@@ -1,5 +1,6 @@
 {
-  "name": "project",
+  "name": "kanban-board",
+  "author": "Ivan Monichev",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -19,13 +20,13 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "project/node_modules/.bin/react-scripts start",
-    "build": "project/node_modules/.bin/react-scripts build",
-    "test": "project/node_modules/.bin/react-scripts test",
-    "eject": "project/node_modules/.bin/react-scripts eject",
-    "lint": "project/node_modules/.bin/eslint src/**/*.{js,jsx,ts,tsx,json}",
-    "lint:fix": "project/node_modules/.bin/eslint --fix 'src/**/*.{js,jsx,ts,tsx,json}'",
-    "format": "project/node_modules/.bin/prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint src/**/*.{js,jsx,ts,tsx,json}",
+    "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx,json}'",
+    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
   },
   "eslintConfig": {
     "extends": [
@@ -46,6 +47,7 @@
     ]
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "@typescript-eslint/eslint-plugin": "^5.58.0",
     "@typescript-eslint/parser": "^5.58.0",
     "eslint": "^8.38.0",
