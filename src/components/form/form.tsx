@@ -5,7 +5,7 @@ import { ChangeEvent, FC, FormEvent, useState } from 'react';
 
 const Form: FC = () => {
 	const dispatch = useAppDispatch();
-	const currentTask = useAppSelector((state) => state.task);
+	const currentTask = useAppSelector((state) => state.tasks);
 	const [taskName, setTaskName] = useState('');
 
 	const handleInputChange = (evt: ChangeEvent<HTMLInputElement>) => {

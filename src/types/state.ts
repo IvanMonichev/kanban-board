@@ -1,7 +1,8 @@
 import store from '../store';
+import { TaskModel } from './common';
 
 export interface AppData {
-	task: string;
+	tasks: TaskModel[];
 }
 
 export type State = ReturnType<typeof store.getState>;

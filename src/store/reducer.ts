@@ -1,13 +1,22 @@
+import { Status } from '../constants';
+import { mockTasks } from '../mock/tasks-mock';
 import { AppData } from '../types/state';
+import { generateID } from '../utils';
 import { createTask } from './action';
 import { createReducer } from '@reduxjs/toolkit';
 
 const initialState: AppData = {
-	task: '',
+	tasks: mockTasks,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
 	builder.addCase(createTask, (state, action) => {
-		state.task = action.payload;
+		state.tasks.push({
+			_id: generateID(),
+			title: action.payload,
+			status: Status.Backlog,
+		});
+
+		console.log(state.tasks);
 	});
 });
