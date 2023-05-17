@@ -1,14 +1,8 @@
-import { Status } from '../constants';
 import store from '../store';
-
-export type Task = {
-	_id: string;
-	title: string;
-	status: Status;
-};
+import { TaskModel } from './common';
 
 export interface AppData {
-	tasks: Task[];
+	tasks: TaskModel[];
 }
 
 export type State = ReturnType<typeof store.getState>;
