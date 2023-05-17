@@ -1,5 +1,6 @@
 import './assets/styles/style.css';
 import App from './components/app/app';
+import { getGeneratedTasks } from './mock/tasks';
 import store from './store';
 import React from 'react';
 import { createRoot } from 'react-dom/client';

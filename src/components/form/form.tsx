@@ -1,6 +1,6 @@
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
-import { createTask } from '../../store/action';
+import { createTask } from '../../store/actions';
 import { ChangeEvent, FC, FormEvent, useState } from 'react';
 
 const Form: FC = () => {
