@@ -10,6 +10,8 @@ type TProps = {
 
 const List: FC<TProps> = ({ statusItem, tasks }) => {
 	const filteredTask = tasks.filter((task) => task.status === statusItem);
+	const isActiveButton =
+		statusItem === Status.Basket && filteredTask.length !== 0;
 
 	return (
 		<article className={`taskboard__group taskboard__group--${statusItem}`}>
@@ -23,7 +25,7 @@ const List: FC<TProps> = ({ statusItem, tasks }) => {
 					<Task key={task._id} task={task} />
 				))}
 			</div>
-			{statusItem === Status.Basket ? (
+			{isActiveButton ? (
 				<button
 					className='taskboard__button button button--clear'
 					type='button'
