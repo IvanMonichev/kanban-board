@@ -1,4 +1,5 @@
 import { Status } from '../constants';
+import { TaskModel } from '../types/common';
 import { generateId, randomIntFromInterval } from '../utils';
 
 const TITLE_TASKS = [
@@ -22,26 +23,24 @@ const TITLE_TASKS = [
 	'Смотреть видео на японском',
 	'Спланировать завтрашний день',
 	'Сфтографировать мир как-то иначе',
-	'Восполнить баланс гормонов. →Серотонин: режим дня, прямая спина, поедание овощей и капли фруктов, →Эндрфин: спорт на пике, сильный смех, →Дофамин: оч вкусная еда, достижение целей, дыхат. практ, кофеиносодерж. продукты, →Окситоцин: обнимашки с друзьями, забота о растении и выращивание его с нуля, самомассаж легкий',
 	'Читать обучающие японскому языку материалы',
 	'Изучать через фильмы и сервисы логику и математику',
 ];
 
-const getRandomStatus = () => {
-	const statuses = Object.keys(Status);
-	const enumKey = statuses[Math.floor(Math.random() * statuses.length)];
-	return enumKey.toLowerCase();
+const getRandomStatus = (): Status => {
+	const statusKeys = Object.keys(Status);
+	return Object.values(Status)[Math.floor(Math.random() * statusKeys.length)];
 };
 
 const generationTask = () => {
 	return {
 		_id: generateId(),
-		title: TITLE_TASKS[randomIntFromInterval(0, TITLE_TASKS.length)],
+		title: TITLE_TASKS[randomIntFromInterval(0, TITLE_TASKS.length - 1)],
 		status: getRandomStatus(),
 	};
 };
 
-export const getGeneratedTasks = (count: number) => {
+export const getGeneratedTasks = (count: number): TaskModel[] => {
 	const result = [];
 	for (let i = 0; i <= count; i++) {
 		result.push(generationTask());

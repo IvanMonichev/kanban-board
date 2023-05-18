@@ -1,13 +1,13 @@
 import { AppData } from '../types/state';
-import { createTask } from './actions';
+import { getTasks } from './actions';
 import { createReducer } from '@reduxjs/toolkit';
 
 const initialState: AppData = {
-	task: [],
+	tasks: [],
 };
 
 export const reducer = createReducer(initialState, (builder) => {
-	builder.addCase(createTask, (state, action) => {
-		// state.task = action.payload;
+	builder.addCase(getTasks, (state, action) => {
+		state.tasks = action.payload;
 	});
 });

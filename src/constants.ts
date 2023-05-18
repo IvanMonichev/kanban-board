@@ -18,3 +18,5 @@ export const StatusLabel: Readonly<{ [key in Status]: string }> = {
 	[Status.Done]: 'Готово',
 	[Status.Basket]: 'Корзина',
 };
+
+export const COUNT_TASK = 7;

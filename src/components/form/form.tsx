@@ -1,10 +1,8 @@
-import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
-import { createTask } from '../../store/actions';
 import { ChangeEvent, FC, FormEvent, useState } from 'react';
 
 const Form: FC = () => {
-	const dispatch = useAppDispatch();
+	// const dispatch = useAppDispatch();
 	const currentTask = useAppSelector((state) => state.tasks);
 	const [taskName, setTaskName] = useState('');
 
@@ -15,7 +13,7 @@ const Form: FC = () => {
 
 	const handleSubmitForm = (evt: FormEvent<HTMLFormElement>) => {
 		evt.preventDefault();
-		dispatch(createTask(taskName));
+		// dispatch(createTask(taskName));
 	};
 
 	console.log(currentTask);
