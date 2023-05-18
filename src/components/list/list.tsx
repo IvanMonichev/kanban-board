@@ -10,8 +10,8 @@ type TProps = {
 
 const List: FC<TProps> = ({ statusItem, tasks }) => {
 	const filteredTask = tasks.filter((task) => task.status === statusItem);
-	const isActiveButton =
-		statusItem === Status.Basket && filteredTask.length !== 0;
+	const isEmptyList = filteredTask.length === 0;
+	const isBasketSection = statusItem === Status.Basket;
 
 	return (
 		<article className={`taskboard__group taskboard__group--${statusItem}`}>
@@ -24,8 +24,15 @@ const List: FC<TProps> = ({ statusItem, tasks }) => {
 				{filteredTask.map((task) => (
 					<Task key={task._id} task={task} />
 				))}
+				{isEmptyList ? (
+					<div
+						className={`taskboard__item task task--${statusItem} task--empty`}
+					>
+						<p>{isBasketSection ? 'Корзина пуста' : 'Перетащите карточку'}</p>
+					</div>
+				) : null}
 			</div>
-			{isActiveButton ? (
+			{isBasketSection && !isEmptyList ? (
 				<button
 					className='taskboard__button button button--clear'
 					type='button'
