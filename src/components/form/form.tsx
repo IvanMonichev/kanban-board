@@ -1,9 +1,12 @@
-import { useAppSelector } from '../../hooks/useAppSelector';
+import { configurationToast, Status } from '../../constants';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { createTask } from '../../store/actions';
+import { generateId } from '../../utils';
 import { ChangeEvent, FC, FormEvent, useState } from 'react';
+import { toast } from 'react-toastify';
 
 const Form: FC = () => {
-	// const dispatch = useAppDispatch();
-	const currentTask = useAppSelector((state) => state.tasks);
+	const dispatch = useAppDispatch();
 	const [taskName, setTaskName] = useState('');
 
 	const handleInputChange = (evt: ChangeEvent<HTMLInputElement>) => {
@@ -13,10 +16,11 @@ const Form: FC = () => {
 
 	const handleSubmitForm = (evt: FormEvent<HTMLFormElement>) => {
 		evt.preventDefault();
-		// dispatch(createTask(taskName));
+		const task = { _id: generateId(), title: taskName, status: Status.Backlog };
+		dispatch(createTask(task));
+		toast(`Задача "${taskName}" успешно добавлена.`, configurationToast);
+		setTaskName('');
 	};
-
-	console.log(currentTask);
 
 	return (
 		<section className='add-task'>
@@ -36,6 +40,7 @@ const Form: FC = () => {
 						required
 						value={taskName}
 						onChange={handleInputChange}
+						minLength={2}
 					/>
 				</div>
 				<button className='add-task__button button' type='submit'>

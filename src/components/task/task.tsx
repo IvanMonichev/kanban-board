@@ -9,7 +9,7 @@ const Task: FC<TProps> = ({ task }) => {
 	return (
 		<div className='taskboard__item task'>
 			<div className='task__body'>
-				<p className='task__view'>{task.title}и</p>
+				<p className='task__view'>{task.title}</p>
 				<input className='task__input' type='text' defaultValue={task.title} />
 			</div>
 			<button className='task__edit' type='button' aria-label='Изменить' />

@@ -3,6 +3,7 @@ import Form from '../form/form';
 import Header from '../header/header';
 import Layout from '../layout/layout';
 import { FC } from 'react';
+import { ToastContainer } from 'react-toastify';
 
 const App: FC = () => {
 	return (
@@ -12,6 +13,7 @@ const App: FC = () => {
 				<Form />
 				<Board />
 			</Layout>
+			<ToastContainer />
 		</>
 	);
 };

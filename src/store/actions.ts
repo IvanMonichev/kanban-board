@@ -1,9 +1,11 @@
 import { getGeneratedTasks } from '../mock/tasks';
+import { TaskModel } from '../types/common';
 import { createAction } from '@reduxjs/toolkit';
 
 const Actions = {
 	// CREATE_TASK: 'task/create',
 	GET_TASK: 'task/get',
+	CREATE_TASK: 'task/create',
 };
 
 // export const createTask = createAction<string>(Actions.CREATE_TASK);
@@ -13,3 +15,5 @@ export const getTasks = createAction(Actions.GET_TASK, (count: number) => {
 		payload: getGeneratedTasks(count),
 	};
 });
+
+export const createTask = createAction<TaskModel>(Actions.CREATE_TASK);

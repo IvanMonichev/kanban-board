@@ -1,3 +1,5 @@
+import { ToastOptions } from 'react-toastify';
+
 export const enum InsertPosition {
 	Beforebegin = 'beforebegin',
 	Afterbegin = 'afterbegin',
@@ -20,3 +22,9 @@ export const StatusLabel: Readonly<{ [key in Status]: string }> = {
 };
 
 export const COUNT_TASK = 7;
+
+export const configurationToast: ToastOptions = {
+	autoClose: 3000,
+	theme: 'light',
+	hideProgressBar: true,
+};
