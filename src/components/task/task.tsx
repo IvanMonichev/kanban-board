@@ -3,6 +3,7 @@ import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { editTask } from '../../store/actions';
 import { TaskModel } from '../../types/common';
 import React, { ChangeEvent, FC, KeyboardEvent, useState } from 'react';
+import Draggable, { DraggableData, DraggableEvent } from 'react-draggable';
 import { toast } from 'react-toastify';
 
 type TProps = {
@@ -12,6 +13,7 @@ type TProps = {
 const Task: FC<TProps> = ({ task }) => {
 	const dispatch = useAppDispatch();
 	const [activeTask, setActiveTask] = useState<boolean>(false);
+	const [activeDrag, setActiveDrag] = useState<boolean>(false);
 	const [titleTask, setTitleTask] = useState<TaskModel['title']>(task.title);
 
 	const handleChangeInput = (evt: ChangeEvent<HTMLInputElement>) => {
@@ -43,20 +45,35 @@ const Task: FC<TProps> = ({ task }) => {
 		updateTask();
 	};
 
+	const handleDragStart = (evt: DraggableEvent, data: DraggableData) => {
+		setActiveDrag(!activeDrag);
+	};
+
+	const handleDragStop = (evt: DraggableEvent, data: DraggableData) => {
+		setActiveDrag(!activeDrag);
+	};
+
 	return (
-		<div className={`taskboard__item task task--${task.status} ${activeTask ? 'task--active' : ''}`} data-id={task._id}>
-			<div className='task__body'>
-				<p className='task__view'>{titleTask}</p>
-				<input
-					className='task__input'
-					type='text'
-					defaultValue={titleTask}
-					onChange={handleChangeInput}
-					onKeyUp={handleKeyDownInput}
-				/>
+		<Draggable onStart={handleDragStart} onStop={handleDragStop}>
+			<div
+				className={`taskboard__item task task--${task.status} ${activeTask ? 'task--active' : ''} ${
+					activeDrag ? 'task--dragged' : ''
+				}`}
+				data-id={task._id}
+			>
+				<div className='task__body'>
+					<p className='task__view'>{titleTask}</p>
+					<input
+						className='task__input'
+						type='text'
+						defaultValue={titleTask}
+						onChange={handleChangeInput}
+						onKeyUp={handleKeyDownInput}
+					/>
+				</div>
+				<button className='task__edit' type='button' aria-label='Изменить' onClick={handleEditTask} />
 			</div>
-			<button className='task__edit' type='button' aria-label='Изменить' onClick={handleEditTask} />
-		</div>
+		</Draggable>
 	);
 };
 
