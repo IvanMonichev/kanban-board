@@ -1,8 +1,9 @@
-import { Key } from '../../constants';
+import { configurationToast, Key } from '../../constants';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { editTask } from '../../store/actions';
 import { TaskModel } from '../../types/common';
 import React, { ChangeEvent, FC, KeyboardEvent, useState } from 'react';
+import { toast } from 'react-toastify';
 
 type TProps = {
 	task: TaskModel;
@@ -21,6 +22,7 @@ const Task: FC<TProps> = ({ task }) => {
 	const updateTask = () => {
 		if (activeTask) {
 			dispatch(editTask({ ...task, title: titleTask }));
+			toast('Задача отредактирована', configurationToast);
 		}
 	};
 
