@@ -28,3 +28,8 @@ export const configurationToast: ToastOptions = {
 	theme: 'light',
 	hideProgressBar: true,
 };
+
+export enum Key {
+	Enter = 'Enter',
+	Escape = 'Escape',
+}

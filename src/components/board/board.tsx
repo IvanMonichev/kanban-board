@@ -5,7 +5,6 @@ import { FC } from 'react';
 
 const Board: FC = () => {
 	const tasks = useAppSelector((state) => state.tasks);
-	console.log(tasks);
 	return (
 		<section className='taskboard'>
 			<h2 className='visually-hidden'>Ваши задачи:</h2>

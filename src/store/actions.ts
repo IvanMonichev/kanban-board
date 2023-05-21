@@ -6,6 +6,7 @@ const Actions = {
 	// CREATE_TASK: 'task/create',
 	GET_TASK: 'task/get',
 	CREATE_TASK: 'task/create',
+	EDIT_TASK: 'task/edit',
 };
 
 // export const createTask = createAction<string>(Actions.CREATE_TASK);
@@ -17,3 +18,5 @@ export const getTasks = createAction(Actions.GET_TASK, (count: number) => {
 });
 
 export const createTask = createAction<TaskModel>(Actions.CREATE_TASK);
+
+export const editTask = createAction<TaskModel>(Actions.EDIT_TASK);

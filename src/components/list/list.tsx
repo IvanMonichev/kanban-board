@@ -15,35 +15,20 @@ const List: FC<TProps> = ({ statusItem, tasks }) => {
 
 	return (
 		<article className={`taskboard__group taskboard__group--${statusItem}`}>
-			<h3
-				className={`taskboard__group-heading taskboard__group-heading--${statusItem}`}
-			>
-				{StatusLabel[statusItem]}
-			</h3>
+			<h3 className={`taskboard__group-heading taskboard__group-heading--${statusItem}`}>{StatusLabel[statusItem]}</h3>
 			<div className='taskboard__list'>
 				{filteredTask.map((task) => (
 					<Task key={task._id} task={task} />
 				))}
 				{isEmptyList ? (
-					<div
-						className={`taskboard__item task task--${statusItem} task--empty`}
-					>
+					<div className={`taskboard__item task task--${statusItem} task--empty`}>
 						<p>{isBasketSection ? 'Корзина пуста' : 'Перетащите карточку'}</p>
 					</div>
 				) : null}
 			</div>
 			{isBasketSection && !isEmptyList ? (
-				<button
-					className='taskboard__button button button--clear'
-					type='button'
-				>
-					<svg
-						fill='none'
-						height='22'
-						viewBox='0 0 22 22'
-						width='22'
-						xmlns='http://www.w3.org/2000/svg'
-					>
+				<button className='taskboard__button button button--clear' type='button'>
+					<svg fill='none' height='22' viewBox='0 0 22 22' width='22' xmlns='http://www.w3.org/2000/svg'>
 						<rect
 							fill='white'
 							height='14.6667'
