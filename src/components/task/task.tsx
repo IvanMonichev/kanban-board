@@ -13,7 +13,6 @@ type TProps = {
 const Task: FC<TProps> = ({ task }) => {
 	const dispatch = useAppDispatch();
 	const [activeTask, setActiveTask] = useState<boolean>(false);
-	const [activeDrag, setActiveDrag] = useState<boolean>(false);
 	const [titleTask, setTitleTask] = useState<TaskModel['title']>(task.title);
 
 	const getActiveClass = activeTask ? 'task--active' : '';
@@ -47,14 +46,21 @@ const Task: FC<TProps> = ({ task }) => {
 		updateTask();
 	};
 
+	const getDraggingStyle = (isDragging: boolean, draggableStyle: string) => {
+		return isDragging ? draggableStyle : '';
+	};
+
 	return (
 		<Draggable draggableId={String(task._id)} index={task._id}>
-			{(provided) => (
+			{(provided, snapshot) => (
 				<div
-					{...provided.draggableProps}
 					{...provided.dragHandleProps}
+					{...provided.draggableProps}
 					ref={provided.innerRef}
-					className={`taskboard__item task task--${task.status} ${getActiveClass}`}
+					className={`taskboard__item task task--${task.status.toLowerCase()} ${getActiveClass} ${getDraggingStyle(
+						snapshot.isDragging,
+						'',
+					)}`}
 					data-id={task._id}
 				>
 					<div className='task__body'>

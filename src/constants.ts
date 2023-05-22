@@ -8,10 +8,10 @@ export const enum InsertPosition {
 }
 
 export enum Status {
-	Backlog = 'backlog',
-	Processing = 'processing',
-	Done = 'done',
-	Basket = 'basket',
+	Backlog = 'Backlog',
+	Processing = 'Processing',
+	Done = 'Done',
+	Basket = 'Basket',
 }
 
 export const StatusLabel: Readonly<{ [key in Status]: string }> = {

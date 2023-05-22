@@ -1,6 +1,6 @@
 import { TaskModel } from '../types/common';
 import { AppData } from '../types/state';
-import { createTask, editTask, getTasks } from './actions';
+import { createTask, editTask, getTasks, updateTasks } from './actions';
 import { createReducer } from '@reduxjs/toolkit';
 
 const initialState: AppData = {
@@ -22,5 +22,8 @@ export const reducer = createReducer(initialState, (builder) => {
 			if (currentIndex !== -1) {
 				state.tasks[currentIndex] = action.payload;
 			}
+		})
+		.addCase(updateTasks, (state, action) => {
+			state.tasks = action.payload;
 		});
 });
