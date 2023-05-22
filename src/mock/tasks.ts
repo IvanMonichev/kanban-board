@@ -1,6 +1,6 @@
 import { Status } from '../constants';
 import { TaskModel } from '../types/common';
-import { generateId, randomIntFromInterval } from '../utils';
+import { randomIntFromInterval } from '../utils';
 
 const TITLE_TASKS = [
 	'Рисовать визуальные заметки по книге из списка',
@@ -32,9 +32,9 @@ const getRandomStatus = (): Status => {
 	return Object.values(Status)[Math.floor(Math.random() * statusKeys.length)];
 };
 
-const generationTask = () => {
+const generationTask = (id: number) => {
 	return {
-		_id: generateId(),
+		_id: id,
 		title: TITLE_TASKS[randomIntFromInterval(0, TITLE_TASKS.length - 1)],
 		status: getRandomStatus(),
 	};
@@ -43,7 +43,7 @@ const generationTask = () => {
 export const getGeneratedTasks = (count: number): TaskModel[] => {
 	const result = [];
 	for (let i = 0; i <= count; i++) {
-		result.push(generationTask());
+		result.push(generationTask(i));
 	}
 	return result;
 };

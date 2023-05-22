@@ -1,7 +1,7 @@
 import { Status } from '../constants';
 
 export interface TaskModel {
-	_id: string;
+	_id: number;
 	title: string;
 	status: Status;
 }
